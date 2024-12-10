@@ -100,9 +100,9 @@ function Product() {
         {/* Header */}
         <header className="bg-gray-100 py-6">
           <div className="container mx-auto px-4">
-            <h1 className="text-2xl font-bold text-blue-900">ShopLeftSideBar</h1>
+            <h1 className="text-2xl font-bold text-blue-900">ShopGridDefault</h1>
             <p className="text-sm text-gray-500">
-              Home / Pages / <span className="text-pink-500">Shop Left Slider</span>
+              Home / Pages / <span className="text-pink-500">ShopGridDefault</span>
             </p>
           </div>
         </header>

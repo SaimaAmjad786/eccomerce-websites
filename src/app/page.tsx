@@ -23,7 +23,6 @@ function page() {
      <Services/>
      <Trendingproduct/>
      <Trending/>
-      {/* <Further/>  */}
      <Discountitem/>
      <Category/>
      <Blog/>
