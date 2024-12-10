@@ -96,7 +96,9 @@ const ProductCard = () => {
             </button>
 
             <div className="mt-6">
-              <h2 className="text-lg font-bold text-gray-800">Share</h2>
+            <h2 className="text-lg font-bold text-gray-800 mt-4">Categories</h2>
+            <h2 className="text-lg font-bold text-gray-800">Tags</h2>
+              <h2 className="text-lg font-bold text-gray-800 mt-2">Share</h2>
               <span className="inline-flex mt-2">
                 <Link href="#" className="text-black">
                   <FaGithub className="text-3xl mx-2" />
