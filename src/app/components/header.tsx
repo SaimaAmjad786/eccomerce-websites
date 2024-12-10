@@ -34,6 +34,9 @@ function Header() {
                 <Link href="/">Home</Link>
               </li>
               <li className='p-4 hover:underline  hover:text-pink-600 underline-offset-2'>
+                <Link href="/">Home</Link>
+              </li>
+              <li className='p-4 hover:underline  hover:text-pink-600 underline-offset-2'>
                 <Link href="/product">Pages</Link>
               </li>
               <li className='p-4 hover:underline  hover:text-pink-600 underline-offset-2'>
