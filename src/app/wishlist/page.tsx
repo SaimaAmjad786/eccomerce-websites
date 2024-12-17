@@ -5,11 +5,11 @@ import Header from "../components/header";
 
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([
-    { id: 1, name: "Ut diam consequat", price: 32.0, quantity: 1 },
-    { id: 2, name: "Vel faucibus posuere", price: 32.0, quantity: 1 },
-    { id: 3, name: "Ac vitae vestibulum", price: 32.0, quantity: 1 },
-    { id: 4, name: "Elit massa diam", price: 32.0, quantity: 1 },
-    { id: 5, name: "Proin pharetra elementum", price: 32.0, quantity: 1 },
+    { id: 1, name: "Ut diam consequat", price: 32.0, quantity: 1, image: "/product1.jpg" },
+    { id: 2, name: "Vel faucibus posuere", price: 32.0, quantity: 1, image: "/product2.jpg" },
+    { id: 3, name: "Ac vitae vestibulum", price: 32.0, quantity: 1, image: "/product3.jpg" },
+    { id: 4, name: "Elit massa diam", price: 32.0, quantity: 1, image: "/product4.jpg" },
+    { id: 5, name: "Proin pharetra elementum", price: 32.0, quantity: 1, image: "/product5.jpg" },
   ]);
 
   const [shipping, setShipping] = useState(0);
@@ -55,9 +55,9 @@ export default function Wishlist() {
       {/* Wishlist Title */}
       <header className="bg-gray-100 py-6">
         <div className="container mx-auto px-4">
-          <h1 className="text-2xl font-bold text-blue-900">Shopping Cart</h1>
+          <h1 className="text-2xl font-bold text-blue-900">Wishlist</h1>
           <p className="text-sm text-gray-500">
-            Home / Pages / <span className="text-pink-500">Shopping Cart</span>
+            Home / Pages / <span className="text-pink-500">Wishlist</span>
           </p>
         </div>
       </header>
@@ -67,21 +67,28 @@ export default function Wishlist() {
           {/* Wishlist Table */}
           <div className="bg-white shadow rounded-lg p-6 md:col-span-2">
             <h2 className="text-xl font-semibold">Products</h2>
-            
+
             {wishlist.length > 0 ? (
               wishlist.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center justify-between border-b border-gray-200 py-4"
+                  className="flex flex-col sm:flex-row items-center justify-between border-b border-gray-200 py-4"
                 >
-                  {/* Product Name and Price */}
-                  <div className="w-full sm:w-1/2">
-                    <p className="text-lg font-semibold">{item.name}</p>
-                    <p className="text-gray-500">Price: ${item.price}</p>
+                  {/* Product Image, Name, and Price */}
+                  <div className="flex items-center w-full sm:w-1/2">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-16 h-16 object-cover rounded-md mr-4"
+                    />
+                    <div>
+                      <p className="text-lg font-semibold">{item.name}</p>
+                      <p className="text-gray-500">Price: ${item.price}</p>
+                    </div>
                   </div>
 
                   {/* Quantity Controls */}
-                  <div className="w-full sm:w-1/4 flex items-center justify-center space-x-2">
+                  <div className="w-full sm:w-1/4 flex items-center justify-center space-x-2 mt-4 sm:mt-0">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       className="text-lg px-2 bg-gray-200 rounded hover:bg-gray-300"
@@ -91,9 +98,7 @@ export default function Wishlist() {
                     <input
                       type="number"
                       value={item.quantity}
-                      onChange={(e) =>
-                        updateQuantity(item.id, Number(e.target.value))
-                      }
+                      onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
                       className="w-12 text-center border rounded"
                     />
                     <button
@@ -114,7 +119,7 @@ export default function Wishlist() {
                   {/* Remove Button */}
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="text-red-500 hover:text-red-700 ml-4"
+                    className="text-red-500 hover:text-red-700 ml-4 mt-2 sm:mt-0"
                   >
                     Remove
                   </button>
