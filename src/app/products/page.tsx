@@ -92,7 +92,7 @@ const products = [
 
 ];
 
-function Product() {
+function Products() {
   return (
     <>
     <TopBar/>
@@ -152,5 +152,5 @@ function Product() {
   );
 }
 
-export default Product;
+export default Products;
 

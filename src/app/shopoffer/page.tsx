@@ -3,6 +3,7 @@ import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import TopBar from "../components/navbar";
 import Header from "../components/header";
 import Image from "next/image";
+import Link from "next/link";
 
 const products = [
   {
@@ -165,6 +166,7 @@ export default function Home() {
                       <span key={i} className="text-gray-300">★</span>
                     ))}
                   </div>
+                  <Link href = "/wishlist">
                   {/* Icons */}
                   <div className="flex space-x-4 mt-4">
                     <button className="flex items-center text-gray-600 hover:text-red-500">
@@ -176,6 +178,7 @@ export default function Home() {
                       <span className="text-sm">Add to Cart</span>
                     </button>
                   </div>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -187,3 +190,7 @@ export default function Home() {
 }
 
 
+
+
+
+ 

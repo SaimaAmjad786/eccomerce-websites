@@ -11,6 +11,7 @@ import Discountitem from './components/discountitem';
 import Category from './components/category';
 import Blog from './components/blog';
 import OffersSection from './components/offersection';
+import NewsletterSection from './components/newslettersection';
 
 function page() {
   return (
@@ -26,6 +27,7 @@ function page() {
      <Trending/>
      <OffersSection/>
      <Discountitem/>
+     <NewsletterSection/>
      <Category/>
      <Blog/>
     </div>
