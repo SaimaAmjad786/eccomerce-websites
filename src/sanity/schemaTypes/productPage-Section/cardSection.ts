@@ -1,0 +1,36 @@
+export default {
+    title: 'card section',
+    name: 'cardSection',
+    type: 'object',
+
+    fields: [
+        {
+            title: 'Card',
+            name: 'card',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        {
+                            title: 'Card Image',
+                            name: 'cardImg',
+                            type: 'image',
+                        },
+                        {
+                            title: 'card Heading',
+                            name: 'cardHeading',
+                            type: 'string',
+                        },
+                        {
+                            title: 'card Price',
+                            name: 'cardPrice',
+                            type: 'number',
+                        }]
+                }
+            ]
+        }
+    ]
+}
+
+
