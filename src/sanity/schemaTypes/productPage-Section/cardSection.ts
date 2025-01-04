@@ -26,6 +26,11 @@ export default {
                             title: 'card Price',
                             name: 'cardPrice',
                             type: 'number',
+                        },
+                        {
+                            title: 'card oldPrice',
+                            name: 'cardoldPrice',
+                            type: 'number',
                         }]
                 }
             ]
