@@ -1,6 +1,6 @@
 export default {
-    title: "Latest Product",
-    name:"latestProduct",
+    title: "Trendings Product",
+    name:"trendingsProduct",
     type: "document",
     fields: [
         {
@@ -9,7 +9,7 @@ export default {
             type: 'array',
             of: [
                 {
-                    type:'cardSection',
+                    type:'cardsSection',
                 },
             ]
         },

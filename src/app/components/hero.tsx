@@ -72,7 +72,7 @@ function HeroSection() {
           {current.description}
         </p>
         <Link
-          href="#"
+          href="/shoplist"
           className="inline-block bg-pink-500 text-white text-sm font-medium py-3 px-6 rounded-md mt-6 hover:bg-pink-600 transition-all duration-300 w-1/3 text-center"
         >
           {current.buttonText}
@@ -118,12 +118,14 @@ function HeroSection() {
       >
         ❮
       </button>
+     
       <button
         onClick={handleNextSlide}
         className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white border border-gray-300 rounded-full p-2 hover:bg-gray-100"
       >
         ❯
       </button>
+      
     </section>
   );
 }

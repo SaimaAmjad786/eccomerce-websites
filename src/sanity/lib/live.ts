@@ -11,3 +11,12 @@ export const { sanityFetch, SanityLive } = defineLive({
     apiVersion: 'vX' 
   }) 
 });
+
+
+// *[_type=="product"][0..5]{
+//   _id,
+//     name,
+//     description,
+//     price,
+//     "image_url":image.asset->url,
+// }

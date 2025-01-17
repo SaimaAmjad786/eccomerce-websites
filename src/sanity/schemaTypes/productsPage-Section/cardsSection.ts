@@ -1,6 +1,6 @@
 export default {
-    title: 'card section',
-    name: 'cardSection',
+    title: 'cards section',
+    name: 'cardsSection',
     type: 'object',
 
     fields: [
@@ -31,11 +31,10 @@ export default {
                             title: 'card oldPrice',
                             name: 'cardoldPrice',
                             type: 'number',
-                        }]
+                        },
+                    ]
                 }
             ]
         }
     ]
 }
-
-
