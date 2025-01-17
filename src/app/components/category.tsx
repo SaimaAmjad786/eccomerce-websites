@@ -193,40 +193,71 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
+import { client } from "@/sanity/lib/client"; // Assuming you've configured your Sanity client
 
-// Define a simple Product interface
+// Define a Product interface to match the structure of the fetched data
 interface Product {
   _id: string;
   name: string;
-  price: number;
+  price: string;
   image_url: string;
 }
 
 const Category = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch data from Sanity
+  // Fetch data from Sanity on component mount
   useEffect(() => {
-    client
-      .fetch(`
-        *[_type == "product"][0..7]{
-          _id,
-          name,
-          price,
-          "image_url": image.asset->url
-        }
-      `)
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Error fetching data:", err));
-  }, []); // Fetch only on mount
+    const fetchProducts = async () => {
+      try {
+        const data = await client.fetch(`
+          *[_type == "product"][0..7]{
+            _id,
+            name,
+            price,
+            "image_url": image.asset->url
+          }
+        `);
+        setProducts(data);
+      } catch (error) {
+        setError("Failed to fetch products.");
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []); // Empty dependency array ensures it runs only once
+
+  if (loading) {
+    return (
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-16 mx-auto text-center">
+          <p>Loading products...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-16 mx-auto text-center">
+          <p>{error}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-16 mx-auto">
         {/* Section Header */}
         <div className="flex flex-col text-center w-full mb-10">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+          <h1 className="text-3xl sm:text-4xl font-bold font-sans title-font text-gray-900">
             Top Categories
           </h1>
         </div>
@@ -238,19 +269,15 @@ const Category = () => {
               <div className="w-full h-auto rounded-lg bg-gray-100 overflow-hidden">
                 <Image
                   alt={product.name}
+                  className="object-cover"
                   src={product.image_url}
                   width={350}
                   height={350}
-                  className="object-cover"
                 />
               </div>
               <div className="w-full mt-4">
-                <h2 className="title-font font-medium text-lg text-[#151875]">
-                  {product.name}
-                </h2>
-                <span className="title-font font-medium text-lg text-[#151875]">
-                  ${product.price}
-                </span>
+                <h2 className="title-font font-medium text-lg text-[#151875]">{product.name}</h2>
+                <span className="title-font font-medium text-lg text-[#151875]">{product.price}</span>
               </div>
             </div>
           ))}
