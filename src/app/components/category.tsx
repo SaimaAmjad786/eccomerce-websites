@@ -195,62 +195,38 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 
-// Define a Product interface to match the structure of the fetched data
+// Define a simple Product interface
 interface Product {
   _id: string;
   name: string;
-  description: string;
   price: number;
   image_url: string;
 }
 
 const Category = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   // Fetch data from Sanity
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await client.fetch(`
-          *[_type == "product"][0..7]{
-            _id,
-            name,
-            description,
-            price,
-            "image_url": image.asset->url
-          }
-        `);
-        setProducts(data);
-      } catch (error) {
-        setError("Failed to fetch products.");
-        console.error("Failed to fetch products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []); // Empty dependency array ensures it runs once when the component mounts
-
-  // If there's an error, display an error message
-  if (error) {
-    return (
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-16 mx-auto text-center">
-          <p>{error}</p>
-        </div>
-      </section>
-    );
-  }
+    client
+      .fetch(`
+        *[_type == "product"][0..7]{
+          _id,
+          name,
+          price,
+          "image_url": image.asset->url
+        }
+      `)
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Error fetching data:", err));
+  }, []); // Fetch only on mount
 
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-16 mx-auto">
         {/* Section Header */}
         <div className="flex flex-col text-center w-full mb-10">
-          <h1 className="text-3xl sm:text-4xl font-bold font-sans title-font text-gray-900">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
             Top Categories
           </h1>
         </div>
@@ -258,18 +234,14 @@ const Category = () => {
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
-            <div
-              key={product._id}
-              className="p-4 flex flex-col items-center text-center"
-            >
+            <div key={product._id} className="p-4 flex flex-col items-center text-center">
               <div className="w-full h-auto rounded-lg bg-gray-100 overflow-hidden">
                 <Image
                   alt={product.name}
-                  className="object-cover "
                   src={product.image_url}
-                  width={400}
-                  height={400}
-                  layout="responsive" // Ensures responsive images
+                  width={350}
+                  height={350}
+                  className="object-cover"
                 />
               </div>
               <div className="w-full mt-4">
