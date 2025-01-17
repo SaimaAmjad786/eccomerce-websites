@@ -221,32 +221,22 @@ const Category = () => {
           }
         `);
         setProducts(data);
-      } catch (error) {
-        setError("Failed to fetch products.");
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
+        setLoading(false); 
+      } catch (err) {
+        setError("Error fetching products: ");
+        setLoading(false); 
       }
     };
 
     fetchProducts();
-  }, []); // Empty dependency array ensures it runs only once
+  }, []); 
 
-  if (loading) {
-    return (
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-16 mx-auto text-center">
-          <p>Loading products...</p>
-        </div>
-      </section>
-    );
-  }
 
   if (error) {
     return (
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-16 mx-auto text-center">
-          <p>{error}</p>
+          <p>{error}</p> 
         </div>
       </section>
     );
@@ -276,8 +266,12 @@ const Category = () => {
                 />
               </div>
               <div className="w-full mt-4">
-                <h2 className="title-font font-medium text-lg text-[#151875]">{product.name}</h2>
-                <span className="title-font font-medium text-lg text-[#151875]">{product.price}</span>
+                <h2 className="title-font font-medium text-lg text-[#151875]">
+                  {product.name}
+                </h2>
+                <span className="title-font font-medium text-lg text-[#151875]">
+                  {product.price}
+                </span>
               </div>
             </div>
           ))}
