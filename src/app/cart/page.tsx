@@ -4,6 +4,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Cartpage from './cartpage';
 import { Button } from '@/components/ui/button';
+import TopBar from '../components/navbar';
+import Header from '../components/header';
 interface Icart {
   id: number; // Product ka unique identifier
   title: string; // Product ka title ya name
@@ -38,6 +40,10 @@ function Cart() {
 
 
   return (
+    <>
+    <TopBar/>
+    <Header/>
+   
     <div className=' mt-24 flex flex-col lg:flex-row justify-around items-center lg:items-start'>
       <Cartpage />
       {/* Order Summary */}
@@ -71,6 +77,7 @@ function Cart() {
       </div>
 
     </div>
+    </>
   )
 }
 
