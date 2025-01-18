@@ -89,8 +89,8 @@ function Header() {
                     >
                       Billing Information
                     </Link>
-                    <Link href="/trendingproduct"  className="block hover:text-pink-600" onClick={closeMobileMenu}>
-                  Trending Product
+                    <Link href="/products"  className="block hover:text-pink-600" onClick={closeMobileMenu}>
+                  Products
                 </Link>
                 <Link href="/card"  className="block hover:text-pink-600" onClick={closeMobileMenu}>
                   Card
