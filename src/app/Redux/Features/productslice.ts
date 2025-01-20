@@ -1,3 +1,4 @@
+
 "use client";
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
@@ -21,6 +22,8 @@ export const ProductSlice = createSlice({
 export const { } = ProductSlice.actions
 
 export default ProductSlice.reducer
+
+
 
 
 

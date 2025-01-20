@@ -1,5 +1,4 @@
 import React from 'react';
-import Features from './components/features';
 import Latestproduct from './components/latestproduct';
 import TopBar from './components/navbar';
 import Services from './components/services';
@@ -12,6 +11,7 @@ import Category from './components/category';
 import Blog from './components/blog';
 import OffersSection from './components/offersection';
 import NewsletterSection from './components/newslettersection';
+import Features from './components/features';
 
 function page() {
   return (

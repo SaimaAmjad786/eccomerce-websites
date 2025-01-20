@@ -5,11 +5,9 @@ import Toastity from '@/app/components/addtocarttoastify';
 import Header from '@/app/components/header';
 import TopBar from '@/app/components/navbar';
 import { Button } from '@/components/ui/button';
-
 import Image, { StaticImageData } from 'next/image';
 import React, { useState } from 'react'
-import { BsPlus } from 'react-icons/bs';
-import { FaMinus, FaStar } from 'react-icons/fa';
+import { FaMinus, FaPlus, FaStar } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 
 let stars = [<FaStar key={0}/>,<FaStar key={1}/>,<FaStar key={2}/>,<FaStar key={3}/>,<FaStar key={4}/>]
@@ -92,7 +90,7 @@ function SlugPage({ params}: {params:{slug:string}} ) {
                onClick={()=>setcartItem({ ...cartItem,qty:cartItem.qty <= 1? 1 :  --cartItem.qty})}
               className='w-10'><FaMinus/></button>
              <span className='w-4'>{cartItem.qty}</span>
-             <button onClick={(()=>setcartItem({...cartItem,qty:++cartItem.qty}))} className='w-10'><BsPlus/></button>
+             <button onClick={(()=>setcartItem({...cartItem,qty:++cartItem.qty}))} className='w-10'><FaPlus/></button>
               {/* add to cart */}
               {/* <Button onClick={()=>dispatch(addtocart(cartItem))} className='lg:w-[300px]'>Add to cart</Button> */}
               <Toastity cartItem={cartItem}/>
@@ -104,4 +102,4 @@ function SlugPage({ params}: {params:{slug:string}} ) {
   )
 }
 
-export default SlugPage;
+export default SlugPage
