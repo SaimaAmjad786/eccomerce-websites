@@ -10,6 +10,14 @@ export default {
         validation: (Rule: any) => Rule.required().error('Name is required'),
       },
       {
+        name : "slug",
+        type:"slug",
+        title:"slug",
+        options:{
+          source:"name"
+        }
+      },
+      {
         name: 'image',
         type: 'image',
         title: 'Image',

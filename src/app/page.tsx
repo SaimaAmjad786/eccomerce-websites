@@ -1,5 +1,4 @@
 import React from 'react';
-import Latestproduct from './components/latestproduct';
 import TopBar from './components/navbar';
 import Services from './components/services';
 import HeroSection from './components/hero';
@@ -11,7 +10,9 @@ import Category from './components/category';
 import Blog from './components/blog';
 import OffersSection from './components/offersection';
 import NewsletterSection from './components/newslettersection';
-import Features from './components/features';
+import Featureproducts from './featureproducts/page';
+import LatestProduct from './latestproduct/page';
+;
 
 function page() {
   return (
@@ -20,8 +21,8 @@ function page() {
   <TopBar/>
      <Header/> 
      <HeroSection/>
-     <Features/>
-     <Latestproduct/>
+     <Featureproducts/>
+     <LatestProduct/>
      <Services/>
      <Trendingproduct/>
      <Trending/>

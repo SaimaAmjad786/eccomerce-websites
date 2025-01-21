@@ -89,7 +89,7 @@ function Header() {
                     >
                       Billing Information
                     </Link>
-                    <Link href="/products"  className="block hover:text-pink-600" onClick={closeMobileMenu}>
+                    <Link href="/productcard"  className="block hover:text-pink-600" onClick={closeMobileMenu}>
                   Products
                 </Link>
                 <Link href="/card"  className="block hover:text-pink-600" onClick={closeMobileMenu}>
@@ -102,7 +102,7 @@ function Header() {
                 )}
               </li>
               <li className="p-4 hover:underline hover:text-pink-600 underline-offset-2">
-                <Link href="/productcard" onClick={closeMobileMenu}>
+                <Link href="/products" onClick={closeMobileMenu}>
                   Products
                 </Link>
               </li>
