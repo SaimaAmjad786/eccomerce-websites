@@ -213,32 +213,6 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { allProducts } from "@/sanity/lib/querries";
 
-
-// Static fallback products
-const fallbackProducts = [
-  {
-    id: 1,
-    name: "Comfort Handy Craft",
-    price: "$42.00",
-    oldPrice: "$65.00",
-    img: "/chair3.png",
-  },
-  {
-    id: 2,
-    name: "Stylish Cantilever Chair",
-    price: "$58.00",
-    oldPrice: "$75.00",
-    img: "/chair2.png",
-  },
-  {
-    id: 3,
-    name: "Elegant Wood Frame Chair",
-    price: "$62.00",
-    oldPrice: "$90.00",
-    img: "/chair1.png",
-  },
-];
-
 function LatestProduct() {
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -295,35 +269,6 @@ function LatestProduct() {
                       {product.discountPercentage}
                     </span>
                   )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Static Fallback Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {fallbackProducts.map((product) => (
-            <div
-              key={product.id}
-              className="p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex flex-col items-center text-center">
-                <Image
-                  src={product.img}
-                  alt={product.name}
-                  className="rounded-lg w-full h-80 object-cover bg-gray-100 mb-4"
-                  width={300}
-                  height={320}
-                />
-                <h2 className="text-[#FB2E86] font-medium text-lg mb-2">
-                  {product.name}
-                </h2>
-                <div className="text-[#151875] text-sm flex justify-center gap-2">
-                  <span>{product.price}</span>
-                  <span className="line-through text-[#FB2E86]">
-                    {product.oldPrice}
-                  </span>
                 </div>
               </div>
             </div>
