@@ -215,8 +215,8 @@ import Image from "next/image";
 import { Product } from "../../../types/products";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import { allProducts } from "@/sanity/lib/querries";
 import Link from "next/link";
+import { allProducts } from "@/sanity/lib/querries";
 
 function LatestProduct() {
   const [product, setProduct] = useState<Product[]>([]);
@@ -248,7 +248,7 @@ function LatestProduct() {
                 <Link href={`/latestproduct/${product.slug.current}`}>
                   {product.image && (
                     <Image
-                      src={urlFor(product.image)}
+                      src={urlFor(product.image).url()}  // Corrected the URL extraction
                       alt={product.name}
                       className="rounded-lg w-full h-80 object-cover bg-gray-100 mb-4"
                       width={300}
@@ -263,7 +263,7 @@ function LatestProduct() {
                   <span>{product.price}</span>
                   {product.discountPercentage && (
                     <span className="line-through text-[#FB2E86]">
-                      $42.00
+                      
                     </span>
                   )}
                 </div>
