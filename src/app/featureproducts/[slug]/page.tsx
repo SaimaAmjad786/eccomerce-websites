@@ -179,7 +179,27 @@ const featureProducts: IProduct[] = [
     color: ["red", "yellow", "blue"],
     size: ["S", "M", "L"],
   },
-  // More products...
+  {
+    id: 3,
+    name: "Cantilever Chair",
+    price: 42.0,
+    image: ["/chair1.png"],
+    code: "Y523202",
+    slug: "cantilever-chair-3",
+    color: ["red", "yellow", "blue"],
+    size: ["S", "M", "L"],
+  },
+  {
+    id: 4,
+    name: "Cantilever Chair",
+    price: 42.0,
+    image: ["/chair2.png"],
+    code: "Y523202",
+    slug: "cantilever-chair-4",
+    color: ["red", "yellow", "blue"],
+    size: ["S", "M", "L"],
+  },
+  
 ];
 
 function SlugPage({ params }: { params: { slug: string } }) {
