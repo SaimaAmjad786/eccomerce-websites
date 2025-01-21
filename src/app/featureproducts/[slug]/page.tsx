@@ -193,7 +193,7 @@ const featureProducts: IProduct[] = [
     id: 4,
     name: "Cantilever Chair",
     price: 42.0,
-    image: ["/chair2.png"],
+    image: ["/chair.png"],
     code: "Y523202",
     slug: "cantilever-chair-4",
     color: ["red", "yellow", "blue"],
