@@ -337,10 +337,10 @@ interface SlugPageProps {
   params: { slug: string };
 }
 
-// Client-side data fetching using useEffect
 const SlugPage = ({ params }: SlugPageProps) => {
   const { slug } = params;
 
+  // Declare the state at the top
   const [product, setProduct] = useState<Product | null>(null);
   const [cartItem, setCartItem] = useState({
     id: "",
@@ -355,7 +355,7 @@ const SlugPage = ({ params }: SlugPageProps) => {
     color: "",
   });
 
-  // Fetch product data after the component mounts
+  // Fetch product data using useEffect
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -393,7 +393,7 @@ const SlugPage = ({ params }: SlugPageProps) => {
     };
 
     fetchProduct();
-  }, [slug]);
+  }, [slug]); // Only run this effect when the slug changes
 
   if (!product) {
     return <div>Loading...</div>;
