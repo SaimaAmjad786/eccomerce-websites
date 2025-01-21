@@ -134,8 +134,6 @@ function LatestProduct() {
     fetchproduct()
   },[])
 
-
-
   return (
     <section className="text-gray-600 body-font py-12">
 
@@ -204,9 +202,6 @@ function LatestProduct() {
 }
 
 export default LatestProduct;
-
-
-
 
 
 
