@@ -136,6 +136,9 @@
 
 
 
+
+
+
 // "use client";
 // import Toastity from "@/app/components/addtocarttoastify";
 // import Header from "@/app/components/header";
@@ -144,7 +147,7 @@
 // import React, { useState } from "react";
 // import { FaMinus, FaPlus } from "react-icons/fa";
 
-// // Update the type of product to include color and size
+// // Define the type of product to include color and size
 // interface IProduct {
 //   id: number;
 //   name: string;
@@ -165,8 +168,8 @@
 //     image: ["/chair3.png"],
 //     code: "Y523201",
 //     slug: "cantilever-chair-1",
-//     color: ["red", "green", "blue"], // Example colors
-//     size: ["S", "M", "L"], // Example sizes
+//     color: ["red", "green", "blue"],
+//     size: ["S", "M", "L"],
 //   },
 //   {
 //     id: 2,
@@ -175,8 +178,8 @@
 //     image: ["/chair2.png"],
 //     code: "Y523202",
 //     slug: "cantilever-chair-2",
-//     color: ["red", "yellow", "blue"], // Example colors
-//     size: ["S", "M", "L"], // Example sizes
+//     color: ["red", "yellow", "blue"],
+//     size: ["S", "M", "L"],
 //   },
 //   {
 //     id: 3,
@@ -185,8 +188,8 @@
 //     image: ["/chair1.png"],
 //     code: "Y523203",
 //     slug: "cantilever-chair-3",
-//     color: ["red", "#black","green"], // Example colors
-//     size: ["M", "L"], // Example sizes
+//     color: ["red", "#black", "green"],
+//     size: ["M", "L"],
 //   },
 //   {
 //     id: 4,
@@ -195,8 +198,8 @@
 //     image: ["/chair.png"],
 //     code: "Y523204",
 //     slug: "cantilever-chair-4",
-//     color: ["black", "red","yellow"], // Example colors
-//     size: ["M", "L"], // Example sizes
+//     color: ["black", "red", "yellow"],
+//     size: ["M", "L"],
 //   },
 // ];
 
@@ -216,7 +219,7 @@
 //   const [cartItem, setCartItem] = useState({
 //     id: items.id,
 //     title: items.name,
-//     image: items.image[0] || defaultImage, // Use first image or default
+//     image: Array.isArray(items.image) ? items.image[0] : items.image || defaultImage, // Use first image or default
 //     slug: items.slug,
 //     price: items.price,
 //     size: items.size ? items.size[0] : "", // Default size if available
@@ -286,7 +289,7 @@
 //                   sriracha taximy chia microdosing tilde DIY.
 //                 </p>
 //                 <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-//                   <p className="text-black font-bold ">Select Colors</p>
+//                   <p className="text-black font-bold">Select Colors</p>
 //                   <div className="space-x-3">
 //                     {items.color?.map((item, i) => (
 //                       <button
@@ -350,6 +353,8 @@
 
 
 
+
+
 "use client";
 import Toastity from "@/app/components/addtocarttoastify";
 import Header from "@/app/components/header";
@@ -363,19 +368,19 @@ interface IProduct {
   id: number;
   name: string;
   price: number;
-  image: string[] | string; // image can be a string or an array
+  image: string[] | string;
   code: string | number;
   slug: string;
-  color?: string[];  // Optional color property
-  size?: string[];   // Optional size property
+  color?: string[];
+  size?: string[];
 }
 
-// Example feature products with color and size properties
+// Example feature products
 const featureProducts: IProduct[] = [
   {
     id: 1,
     name: "Cantilever Chair",
-    price: 42.00,
+    price: 42.0,
     image: ["/chair3.png"],
     code: "Y523201",
     slug: "cantilever-chair-1",
@@ -385,74 +390,46 @@ const featureProducts: IProduct[] = [
   {
     id: 2,
     name: "Cantilever Chair",
-    price: 42.00,
+    price: 42.0,
     image: ["/chair2.png"],
     code: "Y523202",
     slug: "cantilever-chair-2",
     color: ["red", "yellow", "blue"],
     size: ["S", "M", "L"],
   },
-  {
-    id: 3,
-    name: "Cantilever Chair",
-    price: 44.00,
-    image: ["/chair1.png"],
-    code: "Y523203",
-    slug: "cantilever-chair-3",
-    color: ["red", "#black", "green"],
-    size: ["M", "L"],
-  },
-  {
-    id: 4,
-    name: "Cantilever Chair",
-    price: 42.00,
-    image: ["/chair.png"],
-    code: "Y523204",
-    slug: "cantilever-chair-4",
-    color: ["black", "red", "yellow"],
-    size: ["M", "L"],
-  },
+  // More products...
 ];
 
 function SlugPage({ params }: { params: { slug: string } }) {
-  // Find the item based on the slug
+  // Find the product based on the slug
   const items = featureProducts.find((item) => item.slug === params.slug);
 
-  // If item is not found, show an error message
+  // Initialize state with fallback values
+  const [cartItem, setCartItem] = useState({
+    id: items?.id || 0,
+    title: items?.name || "Unknown",
+    image: Array.isArray(items?.image) ? items.image[0] : items?.image || "/default-image.png",
+    slug: items?.slug || "unknown",
+    price: items?.price || 0,
+    size: items?.size ? items.size[0] : "",
+    color: items?.color ? items.color[0] : "",
+    description: "Sample description",
+    qty: 1,
+    discount: 0,
+  });
+
+  // If the item doesn't exist, render a fallback UI
   if (!items) {
     return <div>Product not found</div>;
   }
 
-  // Default image in case of missing image data
-  const defaultImage = "/default-image.png"; 
-
-  // State to store the cart item
-  const [cartItem, setCartItem] = useState({
-    id: items.id,
-    title: items.name,
-    image: Array.isArray(items.image) ? items.image[0] : items.image || defaultImage, // Use first image or default
-    slug: items.slug,
-    price: items.price,
-    size: items.size ? items.size[0] : "", // Default size if available
-    color: items.color ? items.color[0] : "", // Default color if available
-    description: "Sample description", // Sample description
-    qty: 1, // Default quantity
-    discount: 0, // No discount
-  });
-
-  // Handle increment and decrement of quantity
+  // Handle increment and decrement
   const incrementQty = () => {
-    setCartItem((prevState) => ({
-      ...prevState,
-      qty: prevState.qty + 1,
-    }));
+    setCartItem((prev) => ({ ...prev, qty: prev.qty + 1 }));
   };
 
   const decrementQty = () => {
-    setCartItem((prevState) => ({
-      ...prevState,
-      qty: prevState.qty > 1 ? prevState.qty - 1 : 1,
-    }));
+    setCartItem((prev) => ({ ...prev, qty: Math.max(1, prev.qty - 1) }));
   };
 
   return (
@@ -463,10 +440,10 @@ function SlugPage({ params }: { params: { slug: string } }) {
         <section className="text-gray-600 body-font overflow-hidden">
           <div className="container px-5 py-24 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
-              {/* Ensure image is available and fallback to default */}
+              {/* Image */}
               <Image
-                src={Array.isArray(items.image) ? items.image[0] : items.image || defaultImage}
-                alt={items.name}
+                src={cartItem.image}
+                alt={cartItem.title}
                 width={500}
                 height={500}
                 className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
@@ -476,10 +453,10 @@ function SlugPage({ params }: { params: { slug: string } }) {
                   Featured Products
                 </h2>
                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                  {items.name}
+                  {cartItem.title}
                 </h1>
                 <div className="flex mb-4">
-                  {/* Render star ratings */}
+                  {/* Rating */}
                   {[...Array(5)].map((_, index) => (
                     <svg
                       key={index}
@@ -495,49 +472,38 @@ function SlugPage({ params }: { params: { slug: string } }) {
                     </svg>
                   ))}
                 </div>
-                <p className="leading-relaxed">
-                  Fam locavore kickstarter distillery. Mixtape chillwave turmeric
-                  sriracha taximy chia microdosing tilde DIY.
-                </p>
+                <p className="leading-relaxed">Fam locavore kickstarter distillery...</p>
+
+                {/* Colors */}
                 <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                   <p className="text-black font-bold">Select Colors</p>
                   <div className="space-x-3">
-                    {items.color?.map((item, i) => (
+                    {items.color?.map((color, i) => (
                       <button
                         key={i}
-                        onClick={() => setCartItem({ ...cartItem, color: item })}
-                        className="w-[37px] active:outline h-[37px] rounded-full"
-                        style={{ backgroundColor: item }}
+                        onClick={() => setCartItem({ ...cartItem, color })}
+                        className="w-[37px] h-[37px] rounded-full"
+                        style={{ backgroundColor: color }}
                       ></button>
                     ))}
                   </div>
                 </div>
 
-                {/* Select Size */}
+                {/* Sizes */}
                 <p className="text-black font-bold">Select Size</p>
                 <div className="space-x-3">
-                  {items.size?.map((item, i) => (
+                  {items.size?.map((size, i) => (
                     <button
                       key={i}
-                      onClick={() => setCartItem({ ...cartItem, size: item })}
-                      className="w-[70px] active:outline h-[37px] rounded-[16px] bg-black text-white font-bold"
+                      onClick={() => setCartItem({ ...cartItem, size })}
+                      className="w-[70px] h-[37px] rounded-[16px] bg-black text-white font-bold"
                     >
-                      {item}
+                      {size}
                     </button>
                   ))}
                 </div>
 
-                {/* Price */}
-                <div className="flex space-x-3 mt-5">
-                  <p className="font-bold">${cartItem.price * cartItem.qty}.00</p>
-                  <p className="font-bold text-blackline-through">
-                    {cartItem.discount > 0 &&
-                      (cartItem.price - (cartItem.price * cartItem.discount) / 100) *
-                        cartItem.qty}
-                  </p>
-                </div>
-
-                {/* Quantity Buttons */}
+                {/* Quantity and Add to Cart */}
                 <div className="flex justify-start items-center pt-10">
                   <button onClick={decrementQty} className="w-10">
                     <FaMinus />
@@ -547,8 +513,6 @@ function SlugPage({ params }: { params: { slug: string } }) {
                     <FaPlus />
                   </button>
                 </div>
-
-                {/* Add to Cart Button */}
                 <Toastity cartItem={cartItem} />
               </div>
             </div>
