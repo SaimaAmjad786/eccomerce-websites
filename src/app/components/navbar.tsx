@@ -174,7 +174,7 @@ const TopBar = () => {
           </div>
 
           {/* Login */}
-          <Link href="/login" className="flex items-center gap-2 cursor-pointer hover:text-gray-200">
+          <Link href="/signup" className="flex items-center gap-2 cursor-pointer hover:text-gray-200">
             <FaUser />
             <span className="hidden sm:inline">Login</span>
           </Link>
