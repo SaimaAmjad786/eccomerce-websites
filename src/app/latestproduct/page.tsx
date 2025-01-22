@@ -209,22 +209,27 @@
 
 
 
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { Product } from "../../../types/products";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
-import Link from "next/link";
-import { allProducts } from "@/sanity/lib/querries";
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { Product } from '../../../types/products';
+import { client } from '@/sanity/lib/client';
+import { urlFor } from '@/sanity/lib/image';
+import Link from 'next/link';
+import { allProducts } from '@/sanity/lib/querries';
 
 function LatestProduct() {
   const [product, setProduct] = useState<Product[]>([]);
 
   useEffect(() => {
     async function fetchProduct() {
-      const fetchedProduct: Product[] = await client.fetch(allProducts);
-      setProduct(fetchedProduct);
+      try {
+        const fetchedProduct: Product[] = await client.fetch(allProducts);
+        setProduct(fetchedProduct);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      }
     }
     fetchProduct();
   }, []);
@@ -246,10 +251,18 @@ function LatestProduct() {
             >
               <div className="flex flex-col items-center text-center">
                 <Link href={`/latestproduct/${product.slug.current}`}>
-                  {product.image && (
+                  {product.image ? (
                     <Image
-                      src={urlFor(product.image).url()}  // Corrected the URL extraction
+                      src={urlFor(product.image).url()}
                       alt={product.name}
+                      className="rounded-lg w-full h-80 object-cover bg-gray-100 mb-4"
+                      width={300}
+                      height={100}
+                    />
+                  ) : (
+                    <Image
+                      src="/placeholder.jpg" // Fallback image
+                      alt="Placeholder"
                       className="rounded-lg w-full h-80 object-cover bg-gray-100 mb-4"
                       width={300}
                       height={100}
@@ -260,10 +273,13 @@ function LatestProduct() {
                   {product.name}
                 </h2>
                 <div className="text-[#151875] text-sm flex justify-center gap-2">
-                  <span>{product.price}</span>
+                  <span>${product.price}</span>
                   {product.discountPercentage && (
                     <span className="line-through text-[#FB2E86]">
-                      
+                      ${(
+                        product.price *
+                        (1 - product.discountPercentage / 100)
+                      ).toFixed(2)}
                     </span>
                   )}
                 </div>
@@ -271,7 +287,6 @@ function LatestProduct() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
