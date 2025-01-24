@@ -6,6 +6,7 @@ import Cartpage from './cartpage';
 import { Button } from '@/components/ui/button';
 import TopBar from '../components/navbar';
 import Header from '../components/header';
+import Link from 'next/link';
 interface Icart {
   id: number; // Product ka unique identifier
   title: string; // Product ka title ya name
@@ -71,9 +72,11 @@ function Cart() {
             <Button className="w-[100px] rounded-[20px]">Apply</Button>
           </div>
         </div>
+        <Link href={"/billinginformation"}>
         <button className="w-full mt-4 bg-black text-white py-2 rounded-md">
           Go to Checkout
         </button>
+        </Link>
       </div>
 
     </div>
