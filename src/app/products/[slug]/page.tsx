@@ -103,3 +103,10 @@ function SlugPage({ params}: {params:{slug:string}} ) {
 }
 
 export default SlugPage
+
+
+
+
+
+
+
