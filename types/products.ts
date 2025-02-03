@@ -16,4 +16,5 @@ export interface Product {
         _type: 'slug';
         current: string;
     };
+    stockLevel :number;
 }
