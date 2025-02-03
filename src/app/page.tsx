@@ -6,7 +6,7 @@ import Header from './components/header';
 import Trendingproduct from './components/trendingproduct';
 import Trending from './components/trending';
 import Discountitem from './components/discountitem';
-import Category from './components/category';
+import Category from './category/page';
 import Blog from './components/blog';
 import OffersSection from './components/offersection';
 import NewsletterSection from './components/newslettersection';

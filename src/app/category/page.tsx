@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ import { allProducts } from '@/sanity/lib/querries';
 import { addToCart } from '../action/action';
 import Swal from 'sweetalert2';
 
-function LatestProduct() {
+function Category() {
   const [product, setProduct] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -43,12 +42,12 @@ function LatestProduct() {
       <div className="container mx-auto">
         {/* Section Header */}
         <div className="flex flex-col text-center w-full mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Latest Products</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Top Categories</h1>
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {product.slice(0, 9).map((product) => (
+          {product.slice(10,16).map((product) => (
             <div
               key={product._id}
               className="p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow duration-300"
@@ -60,17 +59,17 @@ function LatestProduct() {
                     <Image
                       src={urlFor(product.image).url()}
                       alt={product.name}
-                      className="rounded-lg w-full h-80 object-cover bg-gray-100 mb-4"
+                      className="rounded-xl w-full  h-80 object-cover  mb-4"
                       width={300}
-                      height={100}
+                      height={200}
                     />
                   ) : (
                     <Image
                       src="/placeholder.jpg" // Fallback image
                       alt="Placeholder"
-                      className="rounded-lg w-full h-80 object-cover bg-gray-100 mb-4"
+                      className="rounded-full w-full  h-80 object-cover bg-gray-100 mb-4"
                       width={300}
-                      height={100}
+                      height={200}
                     />
                   )}
                   <h2 className="text-[#FB2E86] font-medium text-lg mb-2">{product.name}</h2>
@@ -104,7 +103,9 @@ function LatestProduct() {
   );
 }
 
-export default LatestProduct;
+export default Category;
+
+
 
 
 
