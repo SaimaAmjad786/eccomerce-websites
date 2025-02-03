@@ -54,7 +54,7 @@ function Category() {
             >
               <div className="flex flex-col items-center text-center">
                 {/* Product Image & Name */}
-                <Link href={`/latestproduct/${product.slug.current}`} className="block w-full">
+                <Link href={`/category/${product.slug.current}`} className="block w-full ">
                   {product.image ? (
                     <Image
                       src={urlFor(product.image).url()}

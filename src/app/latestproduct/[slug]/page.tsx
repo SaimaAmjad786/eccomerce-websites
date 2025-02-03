@@ -272,13 +272,13 @@ const SlugPage: React.FC<ProductPageProps> = ({ params }) => {
               )}
 
               <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                <h2 className="text-sm title-font text-gray-500 tracking-widest">
+                <h2 className="text-lg title-font text-black  font-bold tracking-widest">
                   Latest Product
                 </h2>
-                <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+                <h1 className="text-gray-900 text-3xl mt-3 title-font font-medium mb-1">
                   {product.name}
                 </h1>
-                <p className="leading-relaxed">{product.description}</p>
+                <p className="leading-relaxed mt-2 ">{product.description}</p>
                 <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                   <div className="flex">
                     <span className="mr-3">Color</span>
