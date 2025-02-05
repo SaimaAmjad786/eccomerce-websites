@@ -235,13 +235,13 @@ const TopBar = () => {
           </div>
 
           {/* Login */}
-          <Link href="/" className="flex items-center gap-2 cursor-pointer hover:text-gray-200">
-            <FaUser />
+         
+            
             <span className="hidden sm:inline">Login</span>
             <SignedOut>
               <SignInButton />
             </SignedOut>
-          </Link>
+          
 
           {/* Wishlist */}
           <Link href="/wishlist" className="flex items-center gap-2 cursor-pointer hover:text-gray-200">
