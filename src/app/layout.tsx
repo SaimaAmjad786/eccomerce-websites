@@ -1,8 +1,17 @@
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+
 import type { Metadata } from "next";
 import { Inter,Poppins } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/footer";
 import Providers from "./provider";
+import TopBar from './components/navbar';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,13 +31,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
-       <Providers>
-        {children}
-       <Footer/>
-       </Providers>
+    
+    // <html lang="en">
+    //   <body className={poppins.className}>
+    //    <Providers>
+    //     {children}
+    //    <Footer/>
+    //    </Providers>
+    //     </body>
+    // </html>
+
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          {/* <SignedOut>
+            <SignInButton />
+          </SignedOut> */}
+          {/* <SignedIn>
+            <UserButton />
+          </SignedIn> */}
+          <Providers>
+          {children}
+          </Providers>
         </body>
-    </html>
+      </html>
+    </ClerkProvider>
+    
   );
 }
